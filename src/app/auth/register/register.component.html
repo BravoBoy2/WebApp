@@ -1,0 +1,65 @@
+<div class="form">
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <!-- Name -->
+    <mat-form-field >
+      <mat-label>Name</mat-label>
+      <input matInput formControlName="name" >
+      @if (hasDisplableError('name')) {
+        <mat-error>Name is required</mat-error>}
+    </mat-form-field>
+
+
+
+    <!-- Email -->
+    <mat-form-field>
+      <mat-label>Email</mat-label>
+      <input type="email" matInput formControlName="email">
+      @if (registerForm.get('email')?.invalid && hasDisplableError('email')) {
+        <mat-error>Email is required</mat-error>
+      } @else if (registerForm.get('email')?.dirty && registerForm.get('email')?.hasError('email')) {
+        <mat-error>
+          Email is not valid
+        </mat-error>
+      }
+    </mat-form-field>
+
+    <!-- password -->
+    <mat-form-field>
+      <mat-label>password</mat-label>
+      <input type="password" matInput formControlName="password" >
+
+      @if (registerForm.get('password')?.hasError('minlength')) {
+        <mat-error>
+          Must be at least 8 characters long
+        </mat-error>
+      }
+
+      @else if (hasDisplableError('password')) {
+        <mat-error>Password is required</mat-error>
+      }
+    </mat-form-field>
+
+
+    <!-- password Confirmation -->
+    <mat-form-field>
+      <mat-label>Password Confirmation</mat-label>
+      <input type="password" matInput formControlName="password_confirmation">
+
+      @if (registerForm.get('password_confirmation')?.hasError('notSame')) {
+        <mat-error>Password didn't match</mat-error>
+      }
+
+      @else if (hasDisplableError('password_confirmation')) {
+        <mat-error> This field is required  </mat-error>
+      }
+
+
+
+    </mat-form-field>
+
+
+    <!-- button -->
+    <button type="submit" [disabled]="registerForm.invalid && registerForm.hasError" mat-stroked-button>Register</button>
+  </form>
+</div>
+
