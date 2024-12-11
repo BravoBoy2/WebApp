@@ -46,7 +46,7 @@ export class RegisterComponent {
 
       this.authService.fetchData('register', this.registerForm.value).subscribe({
         next: (response: any) => {
-          console.log(response);
+          // console.log(response);
           this.dialog.open(DialogComponent, {
             data: {
               title: 'Success',
