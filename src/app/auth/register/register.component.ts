@@ -6,6 +6,7 @@ import {MatInput} from "@angular/material/input";
 import {AuthService} from '../auth.service';
 import {DialogComponent} from '../../dialog/dialog.component';
 import {MatDialog} from '@angular/material/dialog';
+import {HttpResponse} from '@angular/common/http';
 
 @Component({
   selector: 'app-register',
@@ -45,11 +46,11 @@ export class RegisterComponent {
     if(this.registerForm.valid){
 
       this.authService.fetchData('register', this.registerForm.value).subscribe({
-        next: (response: any) => {
+        next: (response: HttpResponse<any>) => {
           // console.log(response);
           this.dialog.open(DialogComponent, {
             data: {
-              title: 'Success',
+              title: 'Success' + response.statusText,
               message : 'Registration Successful'
             }
           });
