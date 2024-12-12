@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatError, MatFormField, MatLabel} from '@angular/material/form-field';
 import {MatInput} from '@angular/material/input';
 import {MatButton} from '@angular/material/button';
+import {MatIconModule} from '@angular/material/icon';
 
 
 
@@ -17,7 +18,8 @@ import {MatButton} from '@angular/material/button';
     MatFormField,
     MatInput,
     MatButton,
-    MatLabel
+    MatLabel,
+    MatIconModule
   ],
   exports: [
     CommonModule,
@@ -27,7 +29,8 @@ import {MatButton} from '@angular/material/button';
     MatFormField,
     MatInput,
     MatButton,
-    MatLabel
+    MatLabel,
+    MatIconModule
 
   ]
 })

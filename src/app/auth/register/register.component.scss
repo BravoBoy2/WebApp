@@ -10,3 +10,26 @@ form{
   flex-direction: column;
   justify-content: space-evenly;
 }
+
+.register-title{
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.register-title mat-icon {
+  align-self: center;
+  font-size: 1.5em;
+}
+
+
+ .material-symbols-outlined {
+   font-variation-settings:
+     'FILL' 0,
+     'wght' 400,
+     'GRAD' 0,
+     'opsz' 40
+ }
+

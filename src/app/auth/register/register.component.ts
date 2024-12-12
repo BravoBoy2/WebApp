@@ -5,18 +5,21 @@ import {MatDialog} from '@angular/material/dialog';
 import {HttpResponse} from '@angular/common/http';
 import {AuthModule} from '../auth.module';
 import {DialogComponent} from '../../dialog/dialog.component';
+import {Router} from '@angular/router';
+
 
 @Component({
   selector: 'app-register',
-    imports: [
-      AuthModule
-    ],
+  imports: [
+    AuthModule,
+  ],
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss'
 })
 export class RegisterComponent {
   private formBuilder = inject(FormBuilder); //making the form
   dialog = inject(MatDialog);
+  router = inject(Router);
 
   passwordMatchValidator : Validators = (control: AbstractControl): null => {
     const password = control.get('password');
@@ -31,7 +34,7 @@ export class RegisterComponent {
     name: ['', Validators.required],
     email: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required, Validators.minLength(8)]],
-    password_confirmation: ['', Validators.required]
+    // password_confirmation: ['', Validators.required]
   }, {validators : this.passwordMatchValidator})
 
 
@@ -53,11 +56,12 @@ export class RegisterComponent {
           });
 
           this.registerForm.reset();
+          this.router.navigate(['/login']);
 
         },
         error: (error : any) => {
-          // console.log('Registration failed', error);
-          this.openDialog("Error", error.error.message);
+          console.log('Registration failed', error.title);
+          this.openDialog("Error", error.message);
         }
       })
     }

@@ -1,6 +1,7 @@
 
-<h1 mat-card-title>
+<h1 >
   Login
+  <mat-icon aria-hidden="false" aria-label="test home icon" fontIcon="user"></mat-icon>
 </h1>
 
 <form [formGroup]="LoginForm" (ngSubmit)="onSubmit()"  >
@@ -19,5 +20,5 @@
   </mat-form-field>
 
 <!--  Button-->
-  <button mat-flat-button  type="submit" [disabled]="LoginForm.invalid && LoginForm.hasError" >Submit</button>
+  <button mat-flat-button  type="submit" [disabled]="LoginForm.invalid && LoginForm.hasError" >Login</button>
 </form>

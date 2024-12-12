@@ -1,3 +1,11 @@
+<div class="register-title">
+  <mat-icon class="material-symbols-outlined" aria-hidden="false" aria-label="register with avatar" fontIcon="account_box-outlined"></mat-icon>
+  <h2> Register </h2>
+
+
+</div>
+
+
 <div class="form">
   <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
     <!-- Name -->
@@ -41,23 +49,19 @@
 
 
     <!-- password Confirmation -->
-    <mat-form-field>
-      <mat-label>Password Confirmation</mat-label>
-      <input type="password" matInput formControlName="password_confirmation">
+<!--    <mat-form-field>-->
+<!--      <mat-label>Password Confirmation</mat-label>-->
+<!--      <input type="password" matInput formControlName="password_confirmation">-->
 
-      @if (registerForm.get('password_confirmation')?.hasError('notSame')) {
-        <mat-error>Password didn't match</mat-error>
-      }
+<!--      @if (registerForm.get('password_confirmation')?.hasError('notSame')) {-->
+<!--        <mat-error>Password didn't match</mat-error>-->
+<!--      }-->
 
-      @else if (hasDisplableError('password_confirmation')) {
-        <mat-error> This field is required  </mat-error>
-      }
-
-
-
-    </mat-form-field>
-
-
+<!--      @else if (hasDisplableError('password_confirmation')) {-->
+<!--        <mat-error> This field is required  </mat-error>-->
+<!--      }-->
+<!--      -->
+<!--    </mat-form-field>-->
     <!-- button -->
     <button type="submit" [disabled]="registerForm.invalid && registerForm.hasError" mat-stroked-button>Register</button>
   </form>

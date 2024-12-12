@@ -4,6 +4,7 @@ import {AuthService} from '../auth.service';
 import {MatDialog} from '@angular/material/dialog';
 import {DialogComponent} from '../../dialog/dialog.component';
 import {AuthModule} from '../auth.module';
+import {HttpResponse} from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
@@ -28,11 +29,11 @@ LoginForm = this.formBuilder.group({
     if(this.LoginForm.valid){
 
       this.authService.fetchData('login', this.LoginForm.value).subscribe({
-        next: (response: any) => {
+        next: (response: HttpResponse<any>) => {
           // console.log(response);
           this.dialog.open(DialogComponent, {
             data: {
-              title: 'Success',
+              title: 'Success' + response.statusText,
               message : 'Registration Successful'
             }
           });
