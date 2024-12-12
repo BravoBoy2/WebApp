@@ -1,18 +1,15 @@
 import {Component, inject} from '@angular/core';
-import {AbstractControl, FormBuilder, FormsModule, ReactiveFormsModule, Validators} from "@angular/forms";
-import {MatButton} from "@angular/material/button";
-import {MatError, MatFormField, MatLabel} from "@angular/material/form-field";
-import {MatInput} from "@angular/material/input";
+import {AbstractControl, FormBuilder, Validators} from "@angular/forms";
 import {AuthService} from '../auth.service';
-import {DialogComponent} from '../../dialog/dialog.component';
 import {MatDialog} from '@angular/material/dialog';
 import {HttpResponse} from '@angular/common/http';
+import {AuthModule} from '../auth.module';
+import {DialogComponent} from '../../dialog/dialog.component';
 
 @Component({
   selector: 'app-register',
     imports: [
-        FormsModule, MatButton, MatError, MatFormField,
-        MatInput, MatLabel, ReactiveFormsModule
+      AuthModule
     ],
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss'

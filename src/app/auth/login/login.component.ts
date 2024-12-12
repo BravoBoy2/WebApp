@@ -1,25 +1,13 @@
 import {Component, inject} from '@angular/core';
-import {FormBuilder, ReactiveFormsModule, Validators} from '@angular/forms';
-import {MatError, MatFormField, MatLabel} from '@angular/material/form-field';
-import {MatInput} from '@angular/material/input';
-import {MatButton} from '@angular/material/button';
-import {MatCardTitle} from '@angular/material/card';
+import {FormBuilder, Validators} from '@angular/forms';
 import {AuthService} from '../auth.service';
 import {MatDialog} from '@angular/material/dialog';
 import {DialogComponent} from '../../dialog/dialog.component';
+import {AuthModule} from '../auth.module';
 
 @Component({
   selector: 'app-login',
-  imports: [
-    ReactiveFormsModule,
-    MatFormField,
-    MatLabel,
-    MatInput,
-    MatError,
-    MatButton,
-    MatCardTitle,
-    MatFormField
-  ],
+  imports: [AuthModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
