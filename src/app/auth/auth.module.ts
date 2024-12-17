@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {MatError, MatFormField, MatLabel} from '@angular/material/form-field';
+import {MatError, MatFormField, MatLabel, MatPrefix, MatSuffix} from '@angular/material/form-field';
 import {MatInput} from '@angular/material/input';
-import {MatButton} from '@angular/material/button';
+import {MatButton, MatIconButton} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 
 
@@ -19,7 +19,10 @@ import {MatIconModule} from '@angular/material/icon';
     MatInput,
     MatButton,
     MatLabel,
-    MatIconModule
+    MatIconModule,
+    MatSuffix,
+    MatPrefix,
+    MatIconButton
   ],
   exports: [
     CommonModule,
@@ -30,7 +33,11 @@ import {MatIconModule} from '@angular/material/icon';
     MatInput,
     MatButton,
     MatLabel,
-    MatIconModule
+    MatIconModule,
+    MatSuffix,
+    MatPrefix,
+    MatIconModule,
+    MatIconButton
 
   ]
 })

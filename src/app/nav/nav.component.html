@@ -1,20 +1,81 @@
-<mat-toolbar color="secondary">
-  <button mat-button [matMenuTriggerFor]="menu">
-    <mat-icon>menu</mat-icon>
-  </button>
-  <span>My App</span>
-  <span class="spacer"></span>
-  <button mat-button routerLink="" routerLinkActive="active" ariaCurrentWhenActive="page">Home</button>
-  <button mat-button routerLink="register" >Register</button>
-  <button mat-button routerLink="login" >Login</button>
-  <button mat-button>Contact</button>
-</mat-toolbar>
+@if (!isAdminLoggedIn && !isUserLoggedIn) {
+  <div class="navBar">
+    <mat-toolbar color="secondary">
+      <button mat-button [matMenuTriggerFor]="menu">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span>My App</span>
+      <span class="spacer"></span>
+      <button mat-button routerLink="" routerLinkActive="active" ariaCurrentWhenActive="page">Home</button>
+      <button mat-button routerLink="register" >Register</button>
+      <button mat-button routerLink="login" >Login</button>
+      <button mat-button>Contact</button>
+    </mat-toolbar>
 
-<mat-menu #menu="matMenu">
-  <button routerLink="" routerLinkActive="active"  mat-menu-item ariaCurrentWhenActive="page">Home</button>
-  <button routerLink="register" routerLinkActive="active" mat-menu-item ariaCurrentWhenActive="page">Register</button>
-  <button routerLink="login" routerLinkActive="active" mat-menu-item ariaCurrentWhenActive="page">Login</button>
-  <button mat-menu-item>Contact</button>
-</mat-menu>
+    <mat-menu #menu="matMenu">
+      <button routerLink="" routerLinkActive="active"  mat-menu-item ariaCurrentWhenActive="page">Home</button>
+      <button routerLink="register" routerLinkActive="active" mat-menu-item ariaCurrentWhenActive="page">Register</button>
+      <button routerLink="login" routerLinkActive="active" mat-menu-item ariaCurrentWhenActive="page">Login</button>
+      <button mat-menu-item>Contact</button>
+    </mat-menu>
+
+  </div>
+}
+
+@if (isAdminLoggedIn) {
+  <div class="navBar">
+    <mat-toolbar color="secondary">
+      <button mat-button [matMenuTriggerFor]="menu">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span>My App</span>
+      <span class="spacer"></span>
+      <button mat-button routerLink="" routerLinkActive="active" ariaCurrentWhenActive="page">Home</button>
+      <button mat-button routerLink="admin-dashboard">Admin Dashboard</button>
+      <button mat-button routerLink="create-quiz">Create Quiz</button>
+      <button mat-button routerLink="admin-results">Results</button>
+
+      <button mat-button>Contact</button>
+      <button mat-button>Log Out</button>
+    </mat-toolbar>
+
+    <mat-menu #menu="matMenu">
+      <button routerLink="" routerLinkActive="active"  mat-menu-item ariaCurrentWhenActive="page">Home</button>
+      <button routerLink="admin-dashboard" routerLinkActive="active" mat-menu-item ariaCurrentWhenActive="page">Admin Dashboard</button>
+      <button routerLink="create-quiz" routerLinkActive="active" mat-menu-item ariaCurrentWhenActive="page">Create Quiz</button>
+      <button routerLink="admin-results" routerLinkActive="active" mat-menu-item ariaCurrentWhenActive="page">Quiz Results</button>
+      <button mat-menu-item>Log Out</button>
+      <button mat-menu-item>Contact</button>
+    </mat-menu>
+
+  </div>
+}
 
 
+@if (isUserLoggedIn) {
+  <div class="navBar">
+    <mat-toolbar color="secondary">
+      <button mat-button [matMenuTriggerFor]="menu">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span>My App</span>
+      <span class="spacer"></span>
+      <button mat-button routerLink="" routerLinkActive="active" ariaCurrentWhenActive="page">Home</button>
+      <button mat-button routerLink="user-dashboard">Dashboard</button>
+      <button mat-button routerLink="results">Results</button>
+
+      <button mat-button>Contact</button>
+      <button mat-button>Log Out</button>
+    </mat-toolbar>
+
+    <mat-menu #menu="matMenu">
+      <button routerLink="" routerLinkActive="active"  mat-menu-item ariaCurrentWhenActive="page">Home</button>
+      <button routerLink="user-dashboard" routerLinkActive="active" mat-menu-item ariaCurrentWhenActive="page">Dashboard</button>
+      <button routerLink="user-results" routerLinkActive="active" mat-menu-item ariaCurrentWhenActive="page">Quiz Results</button>
+      <button mat-menu-item>Log Out</button>
+      <button mat-menu-item>Contact</button>
+    </mat-menu>
+
+  </div>
+
+}

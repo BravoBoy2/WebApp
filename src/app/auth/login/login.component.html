@@ -1,8 +1,6 @@
-
-<h1 >
-  Login
-  <mat-icon aria-hidden="false" aria-label="test home icon" fontIcon="user"></mat-icon>
-</h1>
+<span class="login-title">
+<h2 matPrefix>Login</h2>
+</span>
 
 <form [formGroup]="LoginForm" (ngSubmit)="onSubmit()"  >
 
@@ -10,15 +8,26 @@
 <mat-form-field>
   <mat-label>email</mat-label>
   <input matInput type="email" formControlName="email">
+  <mat-icon matSuffix>account_box</mat-icon>
   <mat-error>Email is required</mat-error>
 </mat-form-field>
 
   <mat-form-field>
     <mat-label>Password</mat-label>
-    <input matInput type="password" formControlName="password">
+    <input matInput [type]="hide() ? 'password' : 'text'" formControlName="password">
+    <button
+      mat-icon-button
+      type="button"
+      matSuffix (click)="clickEvent($event)"
+      [attr.aria-label]=" 'Hide Password'"
+      [attr.aria-pressed]="hide()"> <mat-icon>{{hide() ? 'visibility_off' : 'visibility'}}</mat-icon>
+    </button>
     <mat-error>Password is required</mat-error>
   </mat-form-field>
 
 <!--  Button-->
+  <div class="button-section">
+    <button mat-button color="primary" matPrefix routerLink="/register">Create account</button>
   <button mat-flat-button  type="submit" [disabled]="LoginForm.invalid && LoginForm.hasError" >Login</button>
+  </div>
 </form>

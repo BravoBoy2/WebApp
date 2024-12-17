@@ -12,4 +12,13 @@ export class AuthService {
     const url = `/api/${apiRoute}`;
     return this.http.post<Observable<any>>(url, formData);
   }
+
+  isLoggedIn() : boolean {
+    /* Check if the user is currently logged in
+     This logic depends on how you handle authentication
+     in your application */
+    const token = localStorage.getItem('token');
+    // Convert token to boolean (true if token exists, false otherwise)
+    return !!token;
+  }
 }

@@ -1,20 +1,24 @@
-import {Component, inject} from '@angular/core';
+import {Component, inject, signal} from '@angular/core';
 import {FormBuilder, Validators} from '@angular/forms';
 import {AuthService} from '../auth.service';
 import {MatDialog} from '@angular/material/dialog';
 import {DialogComponent} from '../../dialog/dialog.component';
 import {AuthModule} from '../auth.module';
 import {HttpResponse} from '@angular/common/http';
+import {RouterLink} from '@angular/router';
+import {StorageService} from '../../shared/storage.service';
 
 @Component({
   selector: 'app-login',
-  imports: [AuthModule],
+  imports: [AuthModule, RouterLink],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
 export class LoginComponent {
   private formBuilder = inject(FormBuilder)
   dialog = inject(MatDialog);
+  hide = signal(true);
+  storageService = inject(StorageService);
 
 LoginForm = this.formBuilder.group({
   email: ['', [Validators.required, Validators.email]],
@@ -29,29 +33,41 @@ LoginForm = this.formBuilder.group({
     if(this.LoginForm.valid){
 
       this.authService.fetchData('login', this.LoginForm.value).subscribe({
-        next: (response: HttpResponse<any>) => {
-          // console.log(response);
+        next: (response: any) => {
+          console.log(response);
           this.dialog.open(DialogComponent, {
             data: {
-              title: 'Success' + response.statusText,
-              message : 'Registration Successful'
+              title: 'Success ' + response,
+              message : 'Welcome back!'
             }
           });
 
+          const user= {
+            id : response.id,
+            name : response.name,
+            email : response.email,
+            role : response.role,
+          }
+          this.storageService.setUser(user);
           this.LoginForm.reset();
 
         },
-        error: (error : any) => {
-          // console.log('Registration failed', error);
+        error: (error : HttpResponse<any>) => {
+          console.log('Registration failed', error);
           this.dialog.open(DialogComponent, {
             data: {
               title: 'Error',
-              message : error.error.message
+              message : error.statusText + "!" + "Username or password is incorrect",
             }
           })
         }
       })
     }
+  }
+
+  clickEvent(event : MouseEvent){
+  this.hide.set(!this.hide());
+  event.stopPropagation();
   }
 
 }

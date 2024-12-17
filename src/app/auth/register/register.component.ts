@@ -1,4 +1,4 @@
-import {Component, inject} from '@angular/core';
+import {Component, inject, signal} from '@angular/core';
 import {AbstractControl, FormBuilder, Validators} from "@angular/forms";
 import {AuthService} from '../auth.service';
 import {MatDialog} from '@angular/material/dialog';
@@ -7,12 +7,10 @@ import {AuthModule} from '../auth.module';
 import {DialogComponent} from '../../dialog/dialog.component';
 import {Router} from '@angular/router';
 
-
 @Component({
   selector: 'app-register',
   imports: [
-    AuthModule,
-  ],
+    AuthModule,],
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss'
 })
@@ -20,6 +18,9 @@ export class RegisterComponent {
   private formBuilder = inject(FormBuilder); //making the form
   dialog = inject(MatDialog);
   router = inject(Router);
+  hide = signal(true);
+  errorMessage = signal('');
+
 
   passwordMatchValidator : Validators = (control: AbstractControl): null => {
     const password = control.get('password');
@@ -38,7 +39,8 @@ export class RegisterComponent {
   }, {validators : this.passwordMatchValidator})
 
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService) {
+  }
 
   onSubmit(){
     // this.isSubmitted = true;
@@ -55,8 +57,9 @@ export class RegisterComponent {
             }
           });
 
-          this.registerForm.reset();
-          this.router.navigate(['/login']);
+
+          this.router.navigate(['/login']).then(() =>
+            this.registerForm.reset());
 
         },
         error: (error : any) => {
@@ -79,6 +82,21 @@ export class RegisterComponent {
   hasDisplableError(ControlName:string) : boolean {
     const control = this.registerForm.get(ControlName);
     return Boolean(control?.invalid) && Boolean(control?.touched);
+  }
+
+  clickEvent(event: MouseEvent){
+    this.hide.set(!this.hide());
+    event.stopPropagation();
+  }
+
+  updateErrorMessage(){
+    if(this.registerForm.get('email')?.hasError('required')){
+      this.errorMessage.set('Email is required');
+    } else if (this.registerForm.get('email')?.hasError('email')){
+      this.errorMessage.set('You must enter a valid email address');
+    } else {
+      this.errorMessage.set('You must enter a valid email address');
+    }
   }
 
 }
