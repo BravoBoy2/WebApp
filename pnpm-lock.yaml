@@ -2906,8 +2906,8 @@ packages:
     resolution: {integrity: sha512-7vuh85V5cdDofPyxn58nrPjBktZo0u9x1g8WtjQol+jZDaE+fhN+cIvTj11GndBnMnyfrUOG1sZQxCdjKh+DKg==}
     engines: {node: '>= 10.13.0'}
 
-  jiti@1.21.6:
-    resolution: {integrity: sha512-2yTgeWTWzMWkHu6Jp9NKgePDaYHbntiwvYuuJLbbN9vl7DC9DvXKOB2BC3ZZ92D3cvV/aflH0osDfwpHepQ53w==}
+  jiti@1.21.7:
+    resolution: {integrity: sha512-/imKNG4EbWNrVjoNC/1H5/9GFy+tqjGBHCaSsN+P2RnPqjsLmv6UD3Ej+Kj8nBWaRAwyk7kK5ZUc+OEatnTR3A==}
     hasBin: true
 
   js-tokens@4.0.0:
@@ -7363,7 +7363,7 @@ snapshots:
       merge-stream: 2.0.0
       supports-color: 8.1.1
 
-  jiti@1.21.6: {}
+  jiti@1.21.7: {}
 
   js-tokens@4.0.0: {}
 
@@ -7998,7 +7998,7 @@ snapshots:
   postcss-loader@8.1.1(postcss@8.4.49)(typescript@5.6.3)(webpack@5.96.1(esbuild@0.24.0)):
     dependencies:
       cosmiconfig: 9.0.0(typescript@5.6.3)
-      jiti: 1.21.6
+      jiti: 1.21.7
       postcss: 8.4.49
       semver: 7.6.3
     optionalDependencies:
